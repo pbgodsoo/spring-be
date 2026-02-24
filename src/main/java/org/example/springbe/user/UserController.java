@@ -19,4 +19,10 @@ public class UserController {
         userService.signup(dto);
         return ResponseEntity.ok("성공");
     }
+
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody UserDto.LoginReq dto) {
+        UserDto.LoginRes res = userService.login(dto);
+        return ResponseEntity.ok(res);
+    }
 }

@@ -14,4 +14,14 @@ public class UserService {
         User user = dto.toEntity();
         userRepository.save(user);
     }
+
+    public UserDto.LoginRes login(UserDto.LoginReq dto) {
+        User user = userRepository.findByEmail(dto.getEmail())
+                .orElseThrow(() -> new IllegalArgumentException("이메일이나 비밀번호가 틀림"));
+        if (!user.getPassword().equals(dto.getPassword())) {
+            throw new IllegalArgumentException("이메일이나 비밀번호가 틀림");
+        }
+        return UserDto.LoginRes.from(user);
+    }
+
 }
