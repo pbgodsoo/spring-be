@@ -21,4 +21,9 @@ public class BoardService {
         List<Board> entityList = boardRepository.findAll();
         return entityList.stream().map(BoardDto.BoardListRes::toListDto).toList();
     }
+
+    public BoardDto.BoardDetailRes findByIdx(Long idx) {
+        Board entity = boardRepository.findById(idx).orElseThrow();
+        return BoardDto.BoardDetailRes.toDetailDto(entity);
+    }
 }

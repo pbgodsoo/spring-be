@@ -24,4 +24,10 @@ public class BoardController {
         List<BoardDto.BoardListRes> result = boardService.findAll();
         return ResponseEntity.ok(result);
     }
+
+    @GetMapping("/{idx}")
+    public ResponseEntity BoardListRes(@PathVariable Long idx) {
+        BoardDto.BoardDetailRes result = boardService.findByIdx(idx);
+        return ResponseEntity.ok(result);
+    }
 }

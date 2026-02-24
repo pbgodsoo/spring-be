@@ -34,4 +34,22 @@ public class BoardDto {
                     .build();
         }
     }
+
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class BoardDetailRes{
+        private Long idx;
+        private String title;
+        private String contents;
+
+        public static BoardDetailRes toDetailDto(Board entity) {
+            return BoardDetailRes.builder()
+                    .idx(entity.getIdx())
+                    .title(entity.getTitle())
+                    .contents(entity.getContents())
+                    .build();
+        }
+    }
 }
