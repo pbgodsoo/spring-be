@@ -21,6 +21,22 @@ public class UserDto {
         }
     }
 
+    @Builder
+    @Getter
+    public static class SignupRes {
+        private Long idx;
+        private String email;
+        private String name;
+
+        public static SignupRes from(User entity) {
+            return SignupRes.builder()
+                    .idx(entity.getIdx())
+                    .email(entity.getEmail())
+                    .name(entity.getName())
+                    .build();
+        }
+    }
+
     @Getter
     public static class LoginReq {
         private String email;

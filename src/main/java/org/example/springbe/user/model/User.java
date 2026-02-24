@@ -18,6 +18,7 @@ public class User {
     @Column(unique = true)
     private String email;
     private String name;
+    @Setter
     private String password;
     private boolean enable;
     private String role;
