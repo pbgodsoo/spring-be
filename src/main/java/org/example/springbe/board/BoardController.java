@@ -30,4 +30,16 @@ public class BoardController {
         BoardDto.BoardDetailRes result = boardService.findByIdx(idx);
         return ResponseEntity.ok(result);
     }
+
+    @PutMapping("/{idx}")
+    public ResponseEntity update(@PathVariable Long idx, @RequestBody BoardDto.UpdateReq dto) {
+        boardService.update(idx, dto);
+        return ResponseEntity.ok("성공");
+    }
+
+    @DeleteMapping("/{idx}")
+    public ResponseEntity delete(@PathVariable Long idx) {
+        boardService.delete(idx);
+        return ResponseEntity.ok("성공");
+    }
 }

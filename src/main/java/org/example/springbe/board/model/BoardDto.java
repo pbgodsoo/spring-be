@@ -14,9 +14,15 @@ public class BoardDto {
         public Board toEntity() {
             return Board.builder()
                     .title(this.title)
-                    .contents(this.title)
+                    .contents(this.contents)
                     .build();
         }
+    }
+
+    @Getter
+    public static class UpdateReq {
+        private String title;
+        private String contents;
     }
 
     @Getter

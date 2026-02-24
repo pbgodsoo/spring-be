@@ -1,5 +1,6 @@
 package org.example.springbe.board;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.springbe.board.model.Board;
 import org.example.springbe.board.model.BoardDto;
@@ -25,5 +26,22 @@ public class BoardService {
     public BoardDto.BoardDetailRes findByIdx(Long idx) {
         Board entity = boardRepository.findById(idx).orElseThrow();
         return BoardDto.BoardDetailRes.toDetailDto(entity);
+    }
+
+    @Transactional
+    public void update(Long idx, BoardDto.UpdateReq dto) {
+        Board entity = boardRepository.findById(idx).orElseThrow();
+
+        entity.setTitle(dto.getTitle());
+        entity.setContents(dto.getContents());
+
+        boardRepository.save(entity);
+    }
+
+    public void delete(Long idx) {
+        if (!boardRepository.existsById(idx)) {
+            throw new IllegalArgumentException("게시글이 존재하지 않습니다.");
+        }
+        boardRepository.deleteById(idx);
     }
 }
