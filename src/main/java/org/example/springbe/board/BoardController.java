@@ -3,10 +3,9 @@ package org.example.springbe.board;
 import lombok.RequiredArgsConstructor;
 import org.example.springbe.board.model.BoardDto;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/board")
@@ -18,5 +17,11 @@ public class BoardController {
     public ResponseEntity register(@RequestBody BoardDto.RegReq dto) {
         boardService.register(dto);
         return ResponseEntity.ok("성공");
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity list() {
+        List<BoardDto.BoardListRes> result = boardService.findAll();
+        return ResponseEntity.ok(result);
     }
 }
